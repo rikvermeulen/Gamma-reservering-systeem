@@ -1,0 +1,199 @@
+* {
+  box-sizing: border-box;
+  /*cursor: none;*/
+}
+
+*:before,
+*:after {
+  box-sizing: border-box
+}
+
+html {
+  font-family: "Akagi",“Helvetica Neue”, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Akagi",“Helvetica Neue”, sans-serif;
+  color: #000;
+  background-color: #fff;
+}
+
+html, body {
+  height:100%;
+  width: 100%;
+}
+
+@font-face {
+  font-family: circular-black;
+  src: url("/fonts/circular-black.otf") format("opentype");
+}
+
+main {
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:active,
+a:hover {
+  outline: 0
+}
+
+a:hover,
+a:focus {
+  text-decoration: none !important;
+  transition: 0.3s;
+}
+
+a:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px
+}
+
+img {
+  vertical-align: middle
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin:0;
+  font-weight: 100;
+}
+
+h1 {
+  font-family: ibm, sans-serif;
+  margin-bottom: .09615em;
+  font-weight: 200;
+  letter-spacing: -.025em;
+  line-height: 1.11538;
+}
+
+h2 {
+  font-family: ibm, sans-serif;
+  margin-bottom: .09615em;
+    font-weight: 200;
+  letter-spacing: -.025em;
+  line-height: 1.11538;
+}
+
+h3 {
+    font-family: ibm, sans-serif;
+    margin-bottom: .09615em;
+    letter-spacing: -.025em;
+    line-height: 1.11538;
+    font-size: 32px;
+}
+
+h4 {
+  font-family: ibm, sans-serif;
+  margin-bottom: .09615em;
+  font-weight: 200;
+  letter-spacing: -.025em;
+  line-height: 1.11538;
+}
+
+
+p {
+  margin:0;
+  font-size: 18px;
+}
+
+.undertitle {
+  font-family: ibm, sans-serif;
+  color: #999;
+  display: block;
+  margin: 0px 0px 0.5em;
+  font-weight: 100;
+  letter-spacing: -.025em;
+  line-height: 1.11538;
+}
+
+b {
+  font-weight: bold;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+ul {
+  padding:0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+
+input,textarea {
+    border-radius: 0;
+    -webkit-appearance: none;
+}
+
+input, textarea, button {
+  border: none;
+}
+
+input, textarea, select, a:focus {
+  outline:none;
+}
+
+input, textarea, select, a {
+  outline:none;
+}
+/*webkit*/
+/*::-webkit-scrollbar {
+  opacity: 0.7;
+  width: 3px;
+  background-color: #fff;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  border: 0 solid rgba(255,255,255,0);
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track {
+  background-color: #fff;
+  border-left: 1px solid #ebebeb;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #000;
+  &:hover {
+    border: 0 solid rgba(255,255,255,0);
+  }
+}*/
+
+::selection {
+  background: #000;
+}
+::-moz-selection {
+  background: #000;
+
+}
+
+dt,dd {
+  font-family: circular-book, sans-serif;
+}
+
+
+.row {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 2.857142857vw;
+  padding-right: 2.857142857vw;
+}
+
+.noscroll {
+  position: fixed;
+  overflow-y:scroll
+}
