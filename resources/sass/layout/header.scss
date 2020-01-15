@@ -1,0 +1,212 @@
+.header {
+    display: block;
+    height: 125px;
+    box-shadow: rgba(0,0,0,.3) 0 1px 3px;
+    margin-bottom: 10px;
+    z-index: 791;
+    background: rgb(255, 255, 255);
+    border-bottom: none;
+    position: relative;
+
+    &-container {
+        padding: 10px;
+        max-width: 960px;
+        margin: 0px auto;
+        width: 960px;
+        display: block;
+        height: 105px;
+        position: relative;
+
+            nav {
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+                height: 45px;
+                padding-left: 117px;
+
+                .logo {
+                    position: absolute;
+                    left: 0px;
+                    bottom: 5px;
+                    color: rgb(0, 56, 120);
+                    display: inline-block;
+                    width: 112px;
+                    height: 40px;
+                    margin-top: 4px;
+                    text-decoration: underline;
+                    padding: 0px;
+
+                    svg {
+                        display: block;
+                        width: 112px;
+                        height: 40px;
+                        pointer-events: none;
+                        user-select: none;
+                        border-radius: 2px;
+                    }
+                }
+
+                ul {
+                    li {
+                        float: left;
+                        vertical-align: top;
+                        margin: 0px 5px;
+
+                        a {
+                            display: inline-block;
+                            position: relative;
+                            z-index: 799;
+                            border-radius: 8px 8px 0px 0px;
+                            height: 40px;
+                            color: rgb(0, 56, 120);
+                            -webkit-font-smoothing: antialiased;
+                            font-size: 1em;
+                            font-weight: normal;
+                            line-height: 22px;
+                            text-decoration: none;
+                            padding: 10px 4px 4px;
+                        }
+                    }
+                }
+
+        }
+
+            .login {
+                right: 0px;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                position: absolute;
+                top: 0px;
+                height: 46px;
+                margin: 0px;
+                padding: 0px;
+                list-style: none;
+
+                ul {
+
+                    li {
+                        display: inline-block;
+                        vertical-align: top;
+
+                        a {
+                            position: relative;
+                            display: inline-block;
+                            box-sizing: border-box;
+                            font-family: Overpass, sans-serif;
+                            font-size: 0.92em;
+                            color: rgb(0, 56, 120);
+                            text-align: right;
+                            padding: 5px;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+
+        .search {
+                right: 115px;
+                width: 307px;
+                position: absolute;
+                top: 57px;
+                left: auto;
+                z-index: 99;
+                transition: right 100ms ease 0s;
+
+                form {
+                    position: relative;
+                    width: 100%;
+                    height: 46px;
+
+                    input {
+                        width: 100%;
+                        height: 46px;
+                        box-sizing: border-box;
+                        padding-left: 17px;
+                        padding-right: 44px;
+                        font-size: 1em;
+                        color: rgb(0, 0, 0);
+                        -webkit-appearance: none;
+                        background: white;
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: rgb(161, 181, 197);
+                        border-image: initial;
+                        transition: all 0.2s ease 0s;
+                        border-radius: 99px !important;
+                    }
+
+                    button {
+                        position: absolute;
+                        top: 3px;
+                        right: 3px;
+                        width: 40px;
+                        height: 40px;
+                        cursor: pointer;
+                        background-color: rgb(0, 56, 120);
+                        color: rgb(255, 255, 255);
+                        z-index: 500;
+                        border-width: initial;
+                        border-style: none;
+                        border-color: initial;
+                        border-image: initial;
+                        border-radius: 99px;
+                        transition: all 0.2s ease 0s;
+
+                        svg {
+                            position: absolute;
+                            top: 11px;
+                            left: 11px;
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+
+        .icons {
+            top: 57px;
+            right: 0px;
+            position: absolute;
+            margin-top: 0px;
+
+            a {
+                display: inline-block;
+                color: rgb(0, 56, 120);
+                text-decoration: underline;
+                padding: 0px 1px;
+
+                svg {
+                    width: 46px;
+                    height: 46px;
+                    color: rgb(0, 56, 120);
+                    stroke-width: 2px;
+                    padding: 7px;
+                }
+
+                span {
+                    display: block;
+                    position: absolute;
+                    box-sizing: content-box;
+                    top: 1px;
+                    right: -1px;
+                    z-index: 1;
+                    width: 19px;
+                    height: 19px;
+                    line-height: 19px;
+                    border: 2px solid white;
+                    padding: 1px 1px;
+                    border-radius: 1.5rem;
+                    background-color: #f36b21;
+                    background-clip: padding-box;
+                    overflow: hidden;
+                    color: white;
+                    font-family: Overpass,sans-serif;
+                    font-size: 11px;
+                    text-align: center;
+                    text-indent: 0;
+                }
+            }
+        }
+    }
+}
