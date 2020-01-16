@@ -21,6 +21,7 @@
                 <li>
                     <a href="">Ridderkerk</a>
                 </li>
+                @if (! (request()->is('checkout') || request()->is('guestCheckout')))
                 @guest()
                 <li>
                     <a href="{{ route('login') }}">Login</a>
@@ -42,6 +43,7 @@
                         @csrf
                     </form>
                 @endguest
+                @endif
             </ul>
         </div>
         <div class="search">

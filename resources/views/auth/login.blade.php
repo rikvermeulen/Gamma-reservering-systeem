@@ -70,6 +70,7 @@
                                     @endif
                                 </div>
                             </div>
+                            <a href="{{ route('guestCheckout.index') }}">Checkout as a Guest</a>
                         </form>
                     </div>
                 </div>
