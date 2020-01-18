@@ -30,6 +30,9 @@ Route::post('/saveForLater/switchToCart/{product}', 'SaveForLaterController@swit
 Route::get('/reservation', 'ReservationController@index')->name('reservation.index');
 Route::post('/reservation/{product}', 'ReservationController@store')->name('reservation.store');
 
+Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
+Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
+
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 
