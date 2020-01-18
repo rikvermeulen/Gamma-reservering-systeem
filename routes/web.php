@@ -41,9 +41,6 @@ Route::get('/product', function () {
     return view('layouts.index');
 });
 
-
-
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
