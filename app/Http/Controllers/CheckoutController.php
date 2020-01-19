@@ -49,7 +49,7 @@ class CheckoutController extends Controller
         })->values()->toJson();
         try {
             $charge = Stripe::charges()->create([
-                'amount' => $this->getNumbers()->get('newTotal') / 100,
+                'amount' => getNumbers()->get('newTotal') / 100,
                 'currency' => 'EUR',
                 'source' => $request->stripeToken,
                 'description' => 'Order',
@@ -80,6 +80,9 @@ class CheckoutController extends Controller
         $tax = config('cart.tax') / 100;
         $discount = session()->get('coupon')['discount'] ?? 0;
         $newSubtotal = (Cart::subtotal() - $discount);
+        if ($newSubtotal < 0) {
+            $newSubtotal = 0;
+        }
         $newTax = $newSubtotal * $tax;
         $newTotal = $newSubtotal * (1 + $tax);
 
@@ -105,11 +108,11 @@ class CheckoutController extends Controller
             'billing_postalcode' => $request->postalcode,
             'billing_phone' => $request->phone,
             'billing_name_on_card' => $request->name_on_card,
-            'billing_discount' => $this->getNumbers()->get('discount'),
-            'billing_discount_code' => $this->getNumbers()->get('code'),
-            'billing_subtotal' => $this->getNumbers()->get('newSubtotal'),
-            'billing_tax' => $this->getNumbers()->get('newTax'),
-            'billing_total' => $this->getNumbers()->get('newTotal'),
+            'billing_discount' => getNumbers()->get('discount'),
+            'billing_discount_code' => getNumbers()->get('code'),
+            'billing_subtotal' => getNumbers()->get('newSubtotal'),
+            'billing_tax' => getNumbers()->get('newTax'),
+            'billing_total' => getNumbers()->get('newTotal'),
             'error' => $error,
         ]);
 
