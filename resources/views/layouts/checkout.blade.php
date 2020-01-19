@@ -137,7 +137,7 @@
                 <div class="checkout-totals">
                     <div class="checkout-totals-left">
                         Subtotal <br>
-                        Tax (13%)<br>
+                        Tax ({{config('cart.tax')}}%)<br>
                         @if (session()->has('coupon'))
                             Discount ({{ session()->get('coupon')['name'] }}) :
                             <br>

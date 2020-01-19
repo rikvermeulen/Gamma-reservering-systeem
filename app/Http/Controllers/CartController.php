@@ -17,7 +17,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('layouts.cart');
+        return view('layouts.cart')->with([
+            'discount' => getNumbers()->get('discount'),
+            'newSubtotal' => getNumbers()->get('newSubtotal'),
+            'newTax' => getNumbers()->get('newTax'),
+            'newTotal' => getNumbers()->get('newTotal'),
+        ]);
     }
 
     /**
@@ -41,12 +46,14 @@ class CartController extends Controller
         $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
             return $cartItem->id === $product->id;
         });
+
         if ($duplicates->isNotEmpty()) {
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
 
         Cart::add($product->id, $product->name, 1, $product->price)
             ->associate('App\Product');
+
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
     }
 
@@ -88,6 +95,12 @@ class CartController extends Controller
             session()->flash('errors', collect(['Quantity must be between 1 and 5.']));
             return response()->json(['success' => false], 400);
         }
+
+        if ($request->quantity > $request->productQuantity) {
+            session()->flash('errors', collect(['We currently do not have enough items in stock.']));
+            return response()->json(['success' => false], 400);
+        }
+
         Cart::update($id, $request->quantity);
         session()->flash('success_message', 'Quantity was updated successfully!');
         return response()->json(['success' => true]);

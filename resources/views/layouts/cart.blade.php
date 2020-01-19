@@ -35,8 +35,8 @@
                             <div class="cart-table-item"><a href="{{ route('products.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
                             <div class="cart-table-description">{!! $item->model->details !!}</div>
                             <div class="price">
-                                <select class="quantity" data-id="{{ $item->rowId }}">
-                                    @for ($i = 1; $i < 5 + 1 ; $i++)
+                                <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
+                                @for ($i = 1; $i < 5 + 1 ; $i++)
                                         <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
                                     @endfor
                                 </select>
@@ -78,8 +78,10 @@
                     <hr>
                     New Subtotal <br>
                 @endif
-                <div class="cart-total">
-                    {{ presentPrice(Cart::subtotal()) }}
+                Tax ({{config('cart.tax')}}%)<br>
+                <span class="cart-totals-total">Total</span>
+                <div class="cart-totals-subtotal">
+                    {{ presentPrice(Cart::subtotal()) }} <br>
                     @if (session()->has('coupon'))
                         -{{ presentPrice($discount) }} <br>&nbsp;<br>
                         <hr>
@@ -141,12 +143,15 @@
 
     <script>
         (function(){
-            const classname = document.querySelectorAll('.quantity')
+            const classname = document.querySelectorAll('.quantity');
             Array.from(classname).forEach(function(element) {
                 element.addEventListener('change', function() {
-                    const id = element.getAttribute('data-id')
+                    const id = element.getAttribute('data-id');
+                    const productQuantity = element.getAttribute('data-productQuantity');
+
                     axios.patch(`/cart/${id}`, {
-                        quantity: this.value
+                        quantity: this.value,
+                        productQuantity: productQuantity
                     })
                         .then(function (response) {
                             // console.log(response);

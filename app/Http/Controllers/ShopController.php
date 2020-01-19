@@ -34,6 +34,7 @@ class ShopController extends Controller
         } else {
             $products = $products->paginate($pagination);
         }
+
         return view('layouts.products')->with([
             'products' => $products,
             'categories' => $categories,
@@ -71,6 +72,13 @@ class ShopController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
+
+        $stockLevel = getStockLevel($product->quantity);
+
+        return view('layouts.product')->with([
+            'product' => $product,
+            'stockLevel' => $stockLevel,
+        ]);
 
         return view('layouts.product')->with('product', $product);
     }

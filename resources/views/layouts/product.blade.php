@@ -31,19 +31,27 @@
                     <div>{{$product->presentPrice()}}</div>
                     <div class="cart">
                         {{--@if ($product->quantity > 0)--}}
-                        <form action="{{ route('cart.store', $product) }}" method="POST">
-                            {{csrf_field()}}
-                            <button type="submit" class="button button-plain">Add to Cart</button>
-                        </form>
-                        <form action="{{ route('reservation.store', $product) }}" method="POST">
-                            {{csrf_field()}}
-                            <button type="submit" class="button button-plain">reservation</button>
-                        </form>
+                        @if ($product->quantity > 0)
+                            <form action="{{ route('cart.store', $product) }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $product->name }}">
+                                <input type="hidden" name="price" value="{{ $product->price }}">
+                                <button type="submit" class="button button-plain">Add to Cart</button>
+                            </form>
+                        @endif
+                        @if ($product->quantity > 0)
+                            <form action="{{ route('reservation.store', $product) }}" method="POST">
+                                {{csrf_field()}}
+                                <button type="submit" class="button button-plain">reservation</button>
+                            </form>
+                        @endif
                         {{--@endif--}}
                     </div>
                 </div>
                 <div class="col12 col-md-12">
                     <div>{!! $product->details !!}</div>
+                    <div>{!! $stockLevel !!}</div>
                     <p>{!! $product->discription !!}</p>
                 </div>
             </div>
