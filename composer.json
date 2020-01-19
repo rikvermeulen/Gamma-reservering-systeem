@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "braintree/braintree_php": "^4.6",
         "cartalyst/stripe-laravel": "10.0",
         "fideloper/proxy": "^4.0",
         "hardevine/shoppingcart": "^2.7",

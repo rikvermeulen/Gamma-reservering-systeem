@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80d79b875875cc2fbc5940d723e61e39",
+    "content-hash": "c952f6adfb672d43f2e10e15faf11e55",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -67,6 +67,53 @@
                 "widgets"
             ],
             "time": "2019-03-25T14:20:55+00:00"
+        },
+        {
+            "name": "braintree/braintree_php",
+            "version": "4.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/braintree/braintree_php.git",
+                "reference": "4323b0647288d637ca0a8deab99a10bfe1798790"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/4323b0647288d637ca0a8deab99a10bfe1798790",
+                "reference": "4323b0647288d637ca0a8deab99a10bfe1798790",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-hash": "*",
+                "ext-openssl": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Braintree": "lib/"
+                },
+                "psr-4": {
+                    "Braintree\\": "lib/Braintree"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Braintree",
+                    "homepage": "https://www.braintreepayments.com"
+                }
+            ],
+            "description": "Braintree PHP Client Library",
+            "time": "2020-01-13T18:24:38+00:00"
         },
         {
             "name": "cartalyst/stripe",
