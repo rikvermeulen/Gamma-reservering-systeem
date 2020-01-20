@@ -10,7 +10,7 @@
                 </svg>
             </a>
             <ul>
-                <li><a href="">Assortiment</a></li>
+                <li><a href="/products">Assortiment</a></li>
                 <li><a href="">klusadvies</a></li>
                 <li><a href="">service</a></li>
                 <li><a href="">actie</a></li>

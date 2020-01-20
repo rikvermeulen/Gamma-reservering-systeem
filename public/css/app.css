@@ -615,3 +615,92 @@ dd {
   background: #7cb947;
 }
 
+.card {
+  max-width: 33.3333%;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  flex-shrink: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  flex-basis: 33.3333%;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 2px;
+  color: inherit;
+  border-radius: 8px;
+}
+
+.card-header {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #003878;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-transform: none;
+  line-height: 30px;
+  -webkit-font-smoothing: antialiased;
+  margin: 0px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-body .form-control {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  background-color: white;
+  font-size: 1em;
+  color: #36444d;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #a1b5c5;
+  -webkit-border-image: initial;
+       -o-border-image: initial;
+          border-image: initial;
+  border-radius: 8px;
+  padding: 20px 30px 20px 10px;
+  -webkit-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  margin-bottom: 20px;
+}
+
+.card-body button {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: auto;
+  line-height: 20px;
+  background-color: #003878;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(100%, rgba(0, 0, 0, 0.133)), to(rgba(0, 0, 0, 0.133)));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.133) 100%, rgba(0, 0, 0, 0.133) 100%);
+  background-size: 0% 100%;
+  text-shadow: rgba(0, 0, 0, 0.2) 0px 1px;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: Overpass, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  margin: 0px;
+  padding: 13px 18px;
+  background-repeat: no-repeat;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  -webkit-border-image: initial;
+       -o-border-image: initial;
+          border-image: initial;
+  border-radius: 99px;
+  text-decoration: none;
+  -webkit-transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s, box-shadow 0.2s ease 0s, color 0.2s ease 0s;
+  transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s, box-shadow 0.2s ease 0s, color 0.2s ease 0s;
+  margin-bottom: 20px;
+}
+
