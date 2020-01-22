@@ -62,6 +62,7 @@
         <script src="https://js.stripe.com/v3/"></script>
 
         <!-- Styles -->
+        <script src="{{ URL::asset('js/jscolor.js')}}"></script>
         <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}" />
         <link rel="stylesheet" href="{{ URL::asset('css/common/bootstrap.css') }}" />
 
@@ -72,7 +73,7 @@
 
         @yield('content')
 
-        <script type="text/javascript" src="{{ URL::asset('js/sandbox.js') }}"></script>
+
         <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
 
     </body>

@@ -57,7 +57,7 @@ class CheckoutController extends Controller
     {
         // Check race condition when there are less items available to purchase
         if ($this->productsAreNoLongerAvailable()) {
-            return back()->withErrors('Sorry! One of the items in your cart is no longer avialble.');
+            return back()->withErrors('Sorry! 1 of meer van de geselcteerde producten is niet langer beschikbaar.');
         }
 
         $contents = Cart::content()->map(function ($item) {
@@ -87,7 +87,7 @@ class CheckoutController extends Controller
 
             Cart::instance('default')->destroy();
             session()->forget('coupon');
-            return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
+            return redirect()->route('confirmation.index')->with('success_message', 'Dank u! Uw betaalmiddel is met succes geaccepteerd.');
         } catch (CardErrorException $e) {
             $this->addToOrdersTables($request, $e->getMessage());
             return back()->withErrors('Error! ' . $e->getMessage());
@@ -124,7 +124,7 @@ class CheckoutController extends Controller
     {
         // Check race condition when there are less items available to purchase
         if ($this->productsAreNoLongerAvailable()) {
-            return back()->withErrors('Sorry! One of the items in your cart is no longer avialble.');
+            return back()->withErrors('Sorry! 1 van de items is niet langer beschikbaar.');
         }
 
         $gateway = new \Braintree\Gateway([
@@ -161,7 +161,7 @@ class CheckoutController extends Controller
             Cart::instance('default')->destroy();
             session()->forget('coupon');
 
-            return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
+            return redirect()->route('confirmation.index')->with('success_message', 'Dank u! Uw betaalmiddel is met succes geaccepteerd.');
         } else {
             $order = $this->addToOrdersTablesPaypal(
                 $transaction->paypal['payerEmail'],

@@ -28,7 +28,9 @@ Route::delete('/saveForLater/{product}', 'SaveForLaterController@destroy')->name
 Route::post('/saveForLater/switchToCart/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
 Route::get('/reservation', 'ReservationController@index')->name('reservation.index');
-Route::post('/reservation/{product}', 'ReservationController@store')->name('reservation.store');
+Route::get('/reservation/{product}', 'ReservationController@show')->name('reservation.show');
+Route::patch('/reservation/{product}', 'ReservationController@update')->name('reservation.update');
+Route::post('/reservation/{id}', 'ReservationController@store')->name('reservation.store');
 
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
 Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
@@ -51,6 +53,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/my-orders', 'OrdersController@index')->name('orders.index');
     Route::get('/my-orders/{order}', 'OrdersController@show')->name('orders.show');
+
+    Route::get('/my-reservations', 'ReservationUserController@index')->name('reservations.index');
+    Route::get('/my-reservations/{reservation}', 'ReservationUserController@show')->name('reservations.show');
 });
 
 

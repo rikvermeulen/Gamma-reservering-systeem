@@ -28,13 +28,14 @@
             <div class="sidebar">
 
                 <ul>
-                    <li class="active"><a href="{{ route('users.edit') }}">My Profile</a></li>
-                    <li><a href="{{ route('orders.index') }}">My Orders</a></li>
+                    <li class="btn btn-secondary active"><a href="{{ route('users.edit') }}">My Profile</a></li>
+                    <li class="btn btn-secondary"><a href="{{ route('orders.index') }}">My Orders</a></li>
+                    <li class="btn btn-secondary active"><a href="{{ route('reservations.index') }}">My Reservation</a></li>
                 </ul>
             </div> <!-- end sidebar -->
             <div class="my-profile">
                 <div class="products-header">
-                    <h1 class="stylish-heading">My Profile</h1>
+                    <h1 class="stylish-heading">Mijn Profiel</h1>
                 </div>
 
                 <div>
@@ -49,13 +50,13 @@
                         </div>
                         <div class="form-control">
                             <input id="password" type="password" name="password" placeholder="Password">
-                            <div>Leave password blank to keep current password</div>
                         </div>
+                        <p>Leave password blank to keep current password</p>
                         <div class="form-control">
                             <input id="password-confirm" type="password" name="password_confirmation" placeholder="Confirm Password">
                         </div>
                         <div>
-                            <button type="submit" class="my-profile-button">Update Profile</button>
+                            <button style="margin-top: 10px" type="submit" class="btn btn-primary my-profile-button">Update Profile</button>
                         </div>
                     </form>
                 </div>

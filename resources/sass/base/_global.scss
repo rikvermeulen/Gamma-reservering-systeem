@@ -197,3 +197,36 @@ dt,dd {
   position: fixed;
   overflow-y:scroll
 }
+
+.reservation {
+
+    .form-group {
+        display: flex;
+        padding: 15px;
+    }
+    label {
+        width: 150px;
+    }
+    input {
+        border: 1px solid #a4a4a4;
+        border-radius: 3px;
+        padding: 12px;
+        position: relative;
+        resize: none;
+        width: 60%;
+    }
+
+    button {
+        background-color: #7cb947;
+        border-radius: 42px;
+        cursor: pointer;
+        padding: 0 30px;
+        color: #fff;
+        text-align: center;
+        font-family: Overpass,sans-serif;
+        font-weight: 400;
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+    }
+}

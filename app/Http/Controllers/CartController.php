@@ -48,13 +48,13 @@ class CartController extends Controller
         });
 
         if ($duplicates->isNotEmpty()) {
-            return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
+            return redirect()->route('cart.index')->with('success_message', 'Product is al in uw winkelmandje!');
         }
 
         Cart::add($product->id, $product->name, 1, $product->price)
             ->associate('App\Product');
 
-        return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
+        return redirect()->route('cart.index')->with('success_message', 'Product is toegevoegd aan uw winkelmandje!');
     }
 
     /**

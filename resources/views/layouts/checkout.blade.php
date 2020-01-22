@@ -134,7 +134,7 @@
                     @foreach (Cart::content() as $item)
                         <div class="checkout-table-row">
                             <div class="checkout-table-row-left">
-                                <img src="{{ productImage($item->model->image) }}" alt="">
+                                <img style="width: 20%" src="{{ productImage($item->model->image) }}" alt="">
                                 <div class="checkout-item-details">
                                     <div class="checkout-table-item">{{ $item->model->name }}</div>
                                     <div class="checkout-table-description">{!! $item->model->details !!}</div>

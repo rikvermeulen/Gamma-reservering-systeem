@@ -13,7 +13,7 @@ class SaveForLaterController extends Controller
     public function destroy($id)
     {
         Cart::instance('saveForLater')->remove($id);
-        return back()->with('success_message', 'Item has been removed!');
+        return back()->with('success_message', 'Product is verwijderd!');
     }
     /**
      * Switch item from Saved for Later  to Cart.
@@ -29,10 +29,10 @@ class SaveForLaterController extends Controller
             return $rowId === $id;
         });
         if ($duplicates->isNotEmpty()) {
-            return redirect()->route('cart.index')->with('success_message', 'Item is already in your Cart!');
+            return redirect()->route('cart.index')->with('success_message', 'Product is al in uw winkelmandje!');
         }
         Cart::instance('default')->add($item->id, $item->name, 1, $item->price)
             ->associate('App\Product');
-        return redirect()->route('cart.index')->with('success_message', 'Item has been moved to Cart!');
+        return redirect()->route('cart.index')->with('success_message', 'Product is verplaast naar uw winkelmandje!');
     }
 }

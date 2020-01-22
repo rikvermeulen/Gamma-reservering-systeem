@@ -26,17 +26,15 @@
 
         <div class="products-section my-orders container">
             <div class="sidebar">
-
-                    <ul>
-                        <li class="btn btn-secondary active"><a href="{{ route('users.edit') }}">My Profile</a></li>
-                        <li class="btn btn-secondary"><a href="{{ route('orders.index') }}">My Orders</a></li>
-                        <li class="btn btn-secondary active"><a href="{{ route('reservations.index') }}">My Reservation</a></li>
-                    </ul>
-
+                <ul>
+                    <li><a href="{{ route('users.edit') }}">My Profile</a></li>
+                    <li class="active"><a href="{{ route('orders.index') }}">My Orders</a></li>
+                    <li class="active"><a href="{{ route('reservation.index') }}">Mijn reservatie</a></li>
+                </ul>
             </div> <!-- end sidebar -->
             <div class="my-profile">
                 <div class="products-header">
-                    <h1 class="stylish-heading">Order ID: {{ $order->id }}</h1>
+                    <h1 class="stylish-heading">Reservation ID: {{ $reservation->id }}</h1>
                 </div>
 
                 <div>
@@ -45,14 +43,11 @@
                             <div class="order-header-items">
                                 <div>
                                     <div class="uppercase font-bold">Order Placed</div>
-                                    <div>{{ presentDate($order->created_at) }}</div>
+                                    <div>{{ presentDate($reservation->created_at) }}</div>
                                 </div>
                                 <div>
                                     <div class="uppercase font-bold">Order ID</div>
-                                    <div>{{ $order->id }}</div>
-                                </div><div>
-                                    <div class="uppercase font-bold">Total</div>
-                                    <div>{{ presentPrice($order->billing_total) }}</div>
+                                    <div>{{ $reservation->id }}</div>
                                 </div>
                             </div>
                             <div>
@@ -66,27 +61,15 @@
                                 <tbody>
                                 <tr>
                                     <td>Name</td>
-                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ $reservation->user->name }}</td>
                                 </tr>
                                 <tr>
                                     <td>Address</td>
-                                    <td>{{ $order->billing_address }}</td>
+                                    <td>{{ $reservation->address }}</td>
                                 </tr>
                                 <tr>
                                     <td>City</td>
-                                    <td>{{ $order->billing_city }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Subtotal</td>
-                                    <td>{{ presentPrice($order->billing_subtotal) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Tax</td>
-                                    <td>{{ presentPrice($order->billing_tax) }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Total</td>
-                                    <td>{{ presentPrice($order->billing_total) }}</td>
+                                    <td>{{ $reservation->city }}</td>
                                 </tr>
                                 </tbody>
                             </table>

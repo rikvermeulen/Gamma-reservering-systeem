@@ -6,21 +6,24 @@
     {{--header--}}
     @include ('layouts.partials.header')
     <main>
-        @if (session()->has('success_message'))
-            <div class="alert alert-success">
-                {{ session()->get('success_message') }}
-            </div>
-        @endif
 
-        @if(count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            <div class="container">
+                <div class="row">
+                    @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                    @endif
+
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
         @if (Cart::count() > 0)
 
@@ -29,7 +32,7 @@
             @foreach(Cart::content() as $item)
                     <div class="cart-table-row">
                         <a href="{{ route('products.show', $item->model->slug) }}">
-                            <img src="{{ productImage($item->model->image) }}" alt="">
+                            <img style="width: 20%" src="{{ productImage($item->model->image) }}" alt="">
                         </a>
                         <div class="cart-item-details">
                             <div class="cart-table-item"><a href="{{ route('products.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
@@ -48,13 +51,15 @@
                                     <div class="have-code-container">
                                         <form action="{{ route('coupon.store') }}" method="POST">
                                             {{ csrf_field() }}
-                                            <input type="text" name="coupon_code" id="coupon_code">
+                                            <div class="form-group col-md-6">
+                                                <input class="form-control" type="text" name="coupon_code" id="coupon_code">
+                                            </div>
                                             <button type="submit" class="button button-plain">Apply</button>
                                         </form>
                                     </div> <!-- end have-code-container -->
                                 @endif
                             </div>
-                            <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
+                            <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST" class="col-md-12">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="cart-options">Remove</button>
@@ -137,6 +142,8 @@
 
                 </div> <!-- end saved-for-later -->
                 @endif
+                </div>
+            </div>
 
 
     </main>
@@ -154,11 +161,11 @@
                         productQuantity: productQuantity
                     })
                         .then(function (response) {
-                            // console.log(response);
+                            console.log(response);
                             window.location.href = '{{ route('cart.index') }}'
                         })
                         .catch(function (error) {
-                            // console.log(error);
+                            console.log(error);
                             window.location.href = '{{ route('cart.index') }}'
                         });
                 })

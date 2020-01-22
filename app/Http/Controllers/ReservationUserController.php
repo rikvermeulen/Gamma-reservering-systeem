@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Reservation;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class ReservationUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        //$reservations = auth()->user()->reservation()->with('products'); // n + 1 issues
+
+        $reservations = auth()->user()->reservations()->with('products')->get(); // fix n + 1 issues
+
+        return view('layouts.my-reservations')->with('reservations', $reservations);
     }
 
     /**
@@ -43,48 +48,41 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Reservation $reservation)
     {
-        //
+        if (auth()->id() !== $reservation->user_id) {
+            return back()->withErros('U heeft geen toegang voor dit!');
+        }
+
+        $products = $reservation->products;
+
+        return view('layouts.my-reservation')->with([
+            'reservation' => $reservation,
+            'products' => $products,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('layouts.my-profile')->with('user', auth()->user());
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
-            'password' => 'sometimes|nullable|string|min:6|confirmed',
-        ]);
-
-        $user = auth()->user();
-        $input = $request->except('password', 'password_confirmation');
-
-        if (! $request->filled('password')) {
-            $user->fill($input)->save();
-
-            return back()->with('success_message', 'Profiel is succesvol geupdate!');
-        }
-
-        $user->password = bcrypt($request->password);
-        $user->fill($input)->save();
-
-        return back()->with('success_message', 'Profiel (en wachtwoord) is succesvol geupdate!');
+        //
     }
 
     /**

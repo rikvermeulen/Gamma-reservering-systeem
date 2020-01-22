@@ -35,38 +35,33 @@
             </div> <!-- end sidebar -->
             <div class="my-profile">
                 <div class="products-header">
-                    <h1 class="stylish-heading">Mijn aankopen</h1>
+                    <h1 class="stylish-heading">Mijn reserveringen</h1>
                 </div>
 
                 <div>
-                    @foreach ($orders as $order)
+                    @foreach ($reservations as $reservation)
                         <div class="order-container">
                             <div class="order-header">
                                 <div class="order-header-items">
                                     <div>
                                         <div class="uppercase font-bold">Order Placed</div>
-                                        <div>{{ presentDate($order->created_at) }}</div>
+                                        <div>{{ presentDate($reservation->created_at) }}</div>
                                     </div>
                                     <div>
-                                        <div class="uppercase font-bold">Order ID</div>
-                                        <div>{{ $order->id }}</div>
-                                    </div><div>
-                                        <div class="uppercase font-bold">Total</div>
-                                        <div>{{ presentPrice($order->billing_total) }}</div>
+                                        <div class="uppercase font-bold">Order ID {{ $reservation->id }}</div>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="order-header-items">
-                                        <div><a href="{{ route('orders.show', $order->id) }}">Order Details</a></div>
-                                        <div>|</div>
+                                        <div><a class="btn btn-primary" href="{{ route('reservations.show', $reservation->id) }}">Order Details</a></div>
                                         <div><a href="#">Invoice</a></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="order-products">
-                                @foreach ($order->products as $product)
+                                @foreach ($reservation->products as $product)
                                     <div class="order-product-item">
-                                        <div><img src="{{ asset($product->image) }}" alt="Product Image"></div>
+                                        <div><img style="width: 20%" src="{{ asset($product->image) }}" alt="Product Image"></div>
                                         <div>
                                             <div>
                                                 <a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a>

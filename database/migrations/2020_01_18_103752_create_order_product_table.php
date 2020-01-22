@@ -19,11 +19,16 @@ class CreateOrderProductTable extends Migration
             $table->foreign('order_id')->references('id')
                 ->on('orders')->onUpdate('cascade')->onDelete('set null');
 
+            $table->BigInteger('reservation_id')->unsigned()->nullable();
+            $table->foreign('reservation_id')->references('id')
+                ->on('reservations')->onUpdate('cascade')->onDelete('set null');
+
             $table->integer('product_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('id')
                 ->on('products')->onUpdate('cascade')->onDelete('set null');
 
             $table->BigInteger('quantity')->unsigned();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

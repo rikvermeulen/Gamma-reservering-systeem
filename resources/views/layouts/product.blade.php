@@ -37,15 +37,16 @@
                                 <input type="hidden" name="id" value="{{ $product->id }}">
                                 <input type="hidden" name="name" value="{{ $product->name }}">
                                 <input type="hidden" name="price" value="{{ $product->price }}">
-                                <button type="submit" class="button button-plain">Add to Cart</button>
+                                <button type="submit" class="btn btn-primary button button-plain">Winkelmandje</button>
                             </form>
                         @endif
-                        @if ($product->quantity > 0)
-                            <form action="{{ route('reservation.store', $product) }}" method="POST">
+                           {{-- <form action="{{ route('reservation.store', $product) }}" method="POST">
                                 {{csrf_field()}}
                                 <button type="submit" class="button button-plain">reservation</button>
-                            </form>
-                        @endif
+                            </form>--}}
+                        @if ($product->quantity > 0)
+                        <a class="btn btn-secondary" href="{{ route('reservation.show', $product) }}"><div>reserveren</div></a>
+                            @endif
                         {{--@endif--}}
                     </div>
                 </div>
