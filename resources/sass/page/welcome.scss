@@ -1,0 +1,50 @@
+.welcome {
+
+    &-intro {
+        h1 {
+            font-size: 30px;
+            line-height: 32px;
+            width: 100%;
+            flex: 0 0 100%;
+            font-weight: 900;
+            margin: 1.739em 0 .869em;
+        }
+
+    }
+
+    &-info {
+
+        &-column {
+            h2 {
+                font-size: 26px;
+                line-height: 32px;
+                width: 100%;
+                flex: 0 0 100%;
+                font-weight: 900;
+                margin: 1.739em 0 .869em;
+            }
+
+            a {
+                color: #fff;
+                border: 0;
+                background-color: #7cb947;
+                padding: 0 30px;
+                width: max-content;
+                height: 40px;
+                font-size: 16px;
+                line-height: 40px;
+                margin: 15px 0;
+                display: block;
+                font-weight: 700;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 25px;
+            }
+
+            img {
+                width: 100%;
+                display: block;
+            }
+        }
+    }
+}

@@ -11878,6 +11878,50 @@ dd {
   text-indent: 0;
 }
 
+.footer {
+  margin-top: 20px;
+  display: block;
+}
+
+.footer-top {
+  background-color: #003878;
+}
+
+.footer-top-column {
+  /*display: inline!important;*/
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+  padding: 20px 0;
+}
+
+.footer-top-column span {
+  color: #fff;
+  font-weight: bold;
+}
+
+.footer-top-column ul li a {
+  color: #fff;
+}
+
+.footer-bottom .copyright {
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.footer-bottom .copyright svg {
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.footer-bottom .copyright span {
+  color: #003878;
+  vertical-align: middle;
+}
+
 .wrap {
   max-width: 1430px;
   padding-left: 70px;
@@ -11899,6 +11943,11 @@ dd {
     padding-right: 30px;
     max-width: 1350px;
   }
+}
+
+.index-intro {
+  text-align: center;
+  padding: 250px 0;
 }
 
 .products-categorie h6 {
@@ -12091,5 +12140,49 @@ dd {
   -webkit-transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s, box-shadow 0.2s ease 0s, color 0.2s ease 0s;
   transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s, box-shadow 0.2s ease 0s, color 0.2s ease 0s;
   margin-bottom: 20px;
+}
+
+.welcome-intro h1 {
+  font-size: 30px;
+  line-height: 32px;
+  width: 100%;
+  -webkit-box-flex: 0;
+          flex: 0 0 100%;
+  font-weight: 900;
+  margin: 1.739em 0 0.869em;
+}
+
+.welcome-info-column h2 {
+  font-size: 26px;
+  line-height: 32px;
+  width: 100%;
+  -webkit-box-flex: 0;
+          flex: 0 0 100%;
+  font-weight: 900;
+  margin: 1.739em 0 0.869em;
+}
+
+.welcome-info-column a {
+  color: #fff;
+  border: 0;
+  background-color: #7cb947;
+  padding: 0 30px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+  margin: 15px 0;
+  display: block;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.welcome-info-column img {
+  width: 100%;
+  display: block;
 }
 

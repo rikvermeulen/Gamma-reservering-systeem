@@ -22,30 +22,30 @@
                     <a href="">Ridderkerk</a>
                 </li>
                 @if (! (request()->is('checkout') || request()->is('guestCheckout')))
-                @guest()
-                <li>
-                    <a href="{{ route('login') }}">Login</a>
-                </li>
-                <li>
-                    <a href="{{ route('register') }}">Sign up</a>
-                </li>
+                    @guest()
+                        <li>
+                            <a href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('register') }}">Sign up</a>
+                        </li>
 
-                @else
+                    @else
                         <li>
                             <a href="{{ route('users.edit') }}">My Account</a>
                         </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-                    </li>
+                                {{ __('Logout') }}
+                            </a>
+                        </li>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                @endguest
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @endguest
                 @endif
             </ul>
         </div>

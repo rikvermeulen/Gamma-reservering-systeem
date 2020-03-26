@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('layouts.index');
 });
 
+Route::get('/welcome', function () {
+    return view('layouts.welcome');
+});
+
+
 Route::get('/products', 'ShopController@index')->name('products.index');
 Route::get('/products/{product}', 'ShopController@show')->name('products.show');
 
