@@ -1,10 +1,16 @@
 .products {
 
     &-categorie {
+        margin-top: 30px;
 
+        ul {
+            li {
+                margin-top: 8px;
+            }
+        }
         h6 {
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 600;
         }
     }
 
@@ -100,4 +106,16 @@
             }
         }
     }
+}
+
+.stylish-heading {
+    margin-top: 20px;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 0;
+    font-size: 32px;
+}
+
+.sorteer {
+    padding: 15px 0;
 }

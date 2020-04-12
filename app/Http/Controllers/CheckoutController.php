@@ -22,13 +22,17 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        //Als Cart geen producten bevat keer terug naar product pagina
         if (Cart::instance('default')->count() == 0) {
             return redirect()->route('products.index');
         }
+
+        //Als gebruiker is ingelogt of request is guestcheckout keer naar checkout pagina
         if (auth()->user() && request()->is('guestCheckout')) {
             return redirect()->route('checkout.index');
         }
 
+        //Geeft waardes braintree mee voor betaling
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -36,8 +40,10 @@ class CheckoutController extends Controller
             'privateKey' => config('services.braintree.privateKey')
         ]);
 
+        //genereert paypal client token voor betaling
         $paypalToken = $gateway->ClientToken()->generate();
 
+        //Geeft waardes mee aan checkout return
         return view('layouts.checkout')->with([
             'paypalToken' => $paypalToken,
             'discount' => getNumbers()->get('discount'),
@@ -55,15 +61,17 @@ class CheckoutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
-        // Check race condition when there are less items available to purchase
+        // Controleert of product nog op voorraad is tijdens het afrekenen zo niet geef error. functie begint op 264
         if ($this->productsAreNoLongerAvailable()) {
             return back()->withErrors('Sorry! 1 of meer van de geselcteerde producten is niet langer beschikbaar.');
         }
 
+        //Geeft waarde van de content van de cart mee per item met slug en qty via json
         $contents = Cart::content()->map(function ($item) {
             return $item->model->slug . ', ' . $item->qty;
         })->values()->toJson();
         try {
+            //maakt betaling aan met de benodigde waardes voor de betaling om betaling te kunnen voltooien en verstuurt deze waardes naar strip
             $charge = Stripe::charges()->create([
                 'amount' => getNumbers()->get('newTotal') / 100,
                 'currency' => 'EUR',
@@ -71,29 +79,39 @@ class CheckoutController extends Controller
                 'description' => 'Order',
                 'receipt_email' => $request->email,
                 'metadata' => [
-                    //change to Order ID after we start using DB
                     'contents' => $contents,
                     'quantity' => Cart::instance('default')->count(),
                     'discount' => collect(session()->get('coupon'))->toJson(),
                 ],
             ]);
-            // SUCCESSFUL
 
+            // als successful
+            //voegt de gegevens van de betaling toe aan de order table
             $order = $this->addToOrdersTables($request, null);
+            //Verstuurd mail met gegevens van de order
             Mail::send(new OrderPlaced($order));
 
-            // decrease the quantities of all the products in the cart
+            // veranderd quantity aan het aantal wat verkocht is van alle product in de cart. functie begint op 255
             $this->decreaseQuantities();
 
+            //verwijderd product uit cart na betaling
             Cart::instance('default')->destroy();
+
+            //verwijderd active coupon tijdens betaling
             session()->forget('coupon');
+
+            //Stuurt na betaling naar succes pagina met succes bericht
             return redirect()->route('confirmation.index')->with('success_message', 'Dank u! Uw betaalmiddel is met succes geaccepteerd.');
-        } catch (CardErrorException $e) {
+        }
+
+        //als betaling niet voltooid is of fout met betaal gegevens  geef error message
+        catch (CardErrorException $e) {
             $this->addToOrdersTables($request, $e->getMessage());
             return back()->withErrors('Error! ' . $e->getMessage());
         }
     }
 
+    //functie voor het berekenen van de totale prijs van het bedrag met tax en coupon korting
     private function getNumbers()
     {
         $tax = config('cart.tax') / 100;
@@ -120,13 +138,16 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //functie wat het mogelijk maakt met paypal te betalen via brainthree
     public function paypalCheckout(Request $request)
     {
-        // Check race condition when there are less items available to purchase
+        // Controleert of product nog op voorraad is tijdens het afrekenen zo niet geef error. functie begint op 264
         if ($this->productsAreNoLongerAvailable()) {
             return back()->withErrors('Sorry! 1 van de items is niet langer beschikbaar.');
         }
 
+        //Geeft waardes mee aan checkout return uit env file van brainthree
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -134,6 +155,7 @@ class CheckoutController extends Controller
             'privateKey' => config('services.braintree.privateKey')
         ]);
 
+        //Ditis het belangrijk element waarmee uw server gevoelige betalingsinformatie kan communiceren
         $nonce = $request->payment_method_nonce;
 
         $result = $gateway->transaction()->sale([
@@ -144,8 +166,10 @@ class CheckoutController extends Controller
             ]
         ]);
 
+
         $transaction = $result->transaction;
 
+        //Als gebruiker betaal heeft wordt betalers data verstuurd en data toegevoegd aan order table. Zie table functie op lijn 240
         if ($result->success) {
             $order = $this->addToOrdersTablesPaypal(
                 $transaction->paypal['payerEmail'],
@@ -153,15 +177,22 @@ class CheckoutController extends Controller
                 null
             );
 
+            //Verstuurd mail met gegevens van de order
             Mail::send(new OrderPlaced($order));
 
-            // decrease the quantities of all the products in the cart
+            // // veranderd quantity aan het aantal wat verkocht is van alle product in de cart. functie begint op 255
             $this->decreaseQuantities();
 
+            //verwijderd product uit cart na betaling
             Cart::instance('default')->destroy();
+
+            //verwijderd active coupon tijdens betaling
             session()->forget('coupon');
 
+            //Stuurt na betaling naar succes pagina met succes bericht
             return redirect()->route('confirmation.index')->with('success_message', 'Dank u! Uw betaalmiddel is met succes geaccepteerd.');
+
+        //Als betaling mislukt worden gegevens van de betaler als een fout opgeslagen en wordt het terug gestuurd met een error. Zie tabel op lijn 240
         } else {
             $order = $this->addToOrdersTablesPaypal(
                 $transaction->paypal['payerEmail'],
@@ -173,6 +204,7 @@ class CheckoutController extends Controller
         }
     }
 
+    //functie op betaal gegevens, klant gegevens en product gegevens op te slaan als order in db als betaler betaald met credit
     protected function addToOrdersTables($request, $error)
     {
         // Insert into orders table
@@ -206,6 +238,7 @@ class CheckoutController extends Controller
         return $order;
     }
 
+    //functie op betaal gegevens, klant gegevens en product gegevens op te slaan als order in db als betaler betaald met paypal
     protected function addToOrdersTablesPaypal($email, $name, $error)
     {
         // Insert into orders table
@@ -234,8 +267,10 @@ class CheckoutController extends Controller
         return $order;
     }
 
+    //functie voor om de voorraad bij te werken na aankoop
     protected function decreaseQuantities()
     {
+        //voor elk product in cart vind id product en update quantity aan aantal gekochte producten
         foreach (Cart::content() as $item) {
             $product = Product::find($item->model->id);
 
@@ -243,8 +278,10 @@ class CheckoutController extends Controller
         }
     }
 
+    //functie als product niet meer beschikbaar is
     protected function productsAreNoLongerAvailable()
     {
+        //voor elk product in cart waar quantity is kleiner dan gevraagd aantal return true
         foreach (Cart::content() as $item) {
             $product = Product::find($item->model->id);
             if ($product->quantity < $item->qty) {

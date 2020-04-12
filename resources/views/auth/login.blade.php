@@ -80,7 +80,13 @@
                                     @endif
                                 </div>
                             </div>
-                            <a href="{{ route('guestCheckout.index') }}">Checkout as a Guest</a>
+                            <div class="form-group ">
+                                <div class="col-md-12">
+                                    <div class="guest">
+                                    <a class="" href="{{ route('guestCheckout.index') }}">Checkout as a Guest</a>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

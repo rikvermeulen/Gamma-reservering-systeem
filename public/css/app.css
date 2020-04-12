@@ -11603,6 +11603,21 @@ dd {
   line-height: 40px;
 }
 
+.btn-gamma {
+  margin-top: 10px;
+  background-color: #7cb947;
+  border-radius: 42px;
+  cursor: pointer;
+  padding: 10px 30px;
+  color: #fff;
+  text-align: center;
+  font-family: Overpass, sans-serif;
+  font-weight: 400;
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+}
+
 .product-section .selected {
   border: 1px solid #979797;
 }
@@ -11950,9 +11965,17 @@ dd {
   padding: 250px 0;
 }
 
+.products-categorie {
+  margin-top: 30px;
+}
+
+.products-categorie ul li {
+  margin-top: 8px;
+}
+
 .products-categorie h6 {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .products-container {
@@ -12053,8 +12076,20 @@ dd {
   background: #7cb947;
 }
 
+.stylish-heading {
+  margin-top: 20px;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 0;
+  font-size: 32px;
+}
+
+.sorteer {
+  padding: 15px 0;
+}
+
 .card {
-  max-width: 33.3333%;
+  max-width: 40.3333%;
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 20px;
@@ -12135,6 +12170,43 @@ dd {
   -webkit-border-image: initial;
        -o-border-image: initial;
           border-image: initial;
+  border-radius: 99px;
+  text-decoration: none;
+  -webkit-transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s, box-shadow 0.2s ease 0s, color 0.2s ease 0s;
+  transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s, box-shadow 0.2s ease 0s, color 0.2s ease 0s;
+  margin-bottom: 20px;
+}
+
+.guest {
+  text-align: center;
+}
+
+.guest a {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  height: auto;
+  line-height: 20px;
+  background-color: #808184;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(100%, rgba(0, 0, 0, 0.133)), to(rgba(0, 0, 0, 0.133)));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.133) 100%, rgba(0, 0, 0, 0.133) 100%);
+  background-size: 0% 100%;
+  text-shadow: rgba(0, 0, 0, 0.2) 0px 1px;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-family: Overpass, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  margin: 0px;
+  padding: 13px 18px;
+  background-repeat: no-repeat;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  -webkit-border-image: initial;
+  -o-border-image: initial;
+  border-image: initial;
   border-radius: 99px;
   text-decoration: none;
   -webkit-transition: background-color 0.2s ease 0s, border-color 0.2s ease 0s, box-shadow 0.2s ease 0s, color 0.2s ease 0s;

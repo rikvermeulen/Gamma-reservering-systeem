@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="products-categorie">
-                            <h6>categorie</h6>
+                            <h6>Categorie</h6>
                             <ul>
                                 @foreach ($categories as $category)
                                     <li class="{{ setActiveCategory($category->slug) }}"><a href="{{ route('products.index', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
@@ -26,10 +26,10 @@
                                     {{--<p>{{App\Product::count() }} resultaten</p>--}}
                                     <div class="products-header">
                                         <h1 class="stylish-heading">{{ $categoryName }}</h1>
-                                        <div>
-                                            <strong>Price: </strong>
-                                            <a href="{{ route('products.index', ['category'=> request()->category, 'sort' => 'low_high']) }}">Low to High</a> |
-                                            <a href="{{ route('products.index', ['category'=> request()->category, 'sort' => 'high_low']) }}">High to Low</a>
+                                        <div class="sorteer">
+                                            <strong>Prijs: </strong>
+                                            <a href="{{ route('products.index', ['category'=> request()->category, 'sort' => 'low_high']) }}">Laag naar hoog</a> |
+                                            <a href="{{ route('products.index', ['category'=> request()->category, 'sort' => 'high_low']) }}">Hoog naar laag</a>
 
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                 </form>
                             </div>
                             @empty
-                                <div style="text-align: left">No items found</div>
+                                <div style="text-align: left">Geen producten gevonden</div>
                             @endforelse
                             {{ $products->appends(request()->input())->links() }}
                         </div>
